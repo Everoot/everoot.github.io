@@ -99,6 +99,16 @@ export class AppConfigService {
       favourite: true,
       desktop_shortcut: false,
     },
+    {
+      id: 'blog',
+      title: 'Blog',
+      icon: '/assets/images/logos/avatar.png',
+      disabled: false,
+      favourite: true,
+      desktop_shortcut: true,
+      isExternalApp: true,
+      url: 'https://everoot.github.io/Blog/',
+    },
   ];
 
   getApps(): App[] {
