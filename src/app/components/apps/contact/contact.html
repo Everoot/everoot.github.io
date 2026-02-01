@@ -1,0 +1,41 @@
+<div class="w-full h-full bg-ub-grey text-white overflow-y-auto windowMainScreen">
+  <div class="w-full max-w-3xl mx-auto px-4 md:px-8 py-8 md:py-12">
+    <h2 class="text-xl md:text-2xl font-light text-white mb-8 md:mb-12 text-center">Contact</h2>
+    <div class="space-y-8 md:space-y-10">
+      <!-- Email -->
+      <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8">
+        <p class="text-xs md:text-sm text-gray-400 mb-2 font-light uppercase tracking-wider">Email</p>
+        <a [href]="'mailto:' + contact.email" class="text-white hover:text-gray-300 transition-colors text-base md:text-lg font-light block">
+          {{ contact.email }}
+        </a>
+      </div>
+      
+      <!-- GitHub -->
+      <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8">
+        <p class="text-xs md:text-sm text-gray-400 mb-2 font-light uppercase tracking-wider">GitHub</p>
+        <a [href]="'https://' + contact.github" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300 transition-colors text-base md:text-lg font-light block">
+          {{ contact.github }}
+        </a>
+      </div>
+      
+      <!-- Available for -->
+      <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8 pt-2">
+        <p class="text-xs md:text-sm text-gray-400 mb-4 font-light uppercase tracking-wider">Available for</p>
+        <ul class="list-none space-y-2">
+          <li class="flex items-start">
+            <span class="text-white mr-3 mt-1">•</span>
+            <span class="text-sm md:text-base text-gray-300 flex-1">PhD program applications</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-white mr-3 mt-1">•</span>
+            <span class="text-sm md:text-base text-gray-300 flex-1">Research collaborations</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-white mr-3 mt-1">•</span>
+            <span class="text-sm md:text-base text-gray-300 flex-1">Software engineering opportunities</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

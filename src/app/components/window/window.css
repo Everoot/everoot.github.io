@@ -1,0 +1,65 @@
+/* Window styles */
+.opened-window {
+  min-width: 25%;
+  min-height: 25%;
+}
+
+/* Responsive window styles */
+@media (max-width: 640px) {
+  .opened-window {
+    min-width: 85%;
+    min-height: 60%;
+  }
+}
+
+.window-shadow {
+  box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.2);
+}
+
+.notFocused {
+  filter: brightness(90%);
+}
+
+.windowMainScreen::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: transparent;
+}
+
+.windowMainScreen::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+.windowMainScreen::-webkit-scrollbar-thumb {
+  background-color: #D3D7CF;
+  border-radius: 5px;
+}
+
+/* Resize handles */
+.opened-window [class*="cursor-n-resize"],
+.opened-window [class*="cursor-s-resize"],
+.opened-window [class*="cursor-w-resize"],
+.opened-window [class*="cursor-e-resize"],
+.opened-window [class*="cursor-nw-resize"],
+.opened-window [class*="cursor-ne-resize"],
+.opened-window [class*="cursor-sw-resize"],
+.opened-window [class*="cursor-se-resize"] {
+  background-color: transparent;
+  transition: background-color 0.1s;
+}
+
+.opened-window [class*="cursor-n-resize"]:hover,
+.opened-window [class*="cursor-s-resize"]:hover,
+.opened-window [class*="cursor-w-resize"]:hover,
+.opened-window [class*="cursor-e-resize"]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.opened-window [class*="cursor-nw-resize"]:hover,
+.opened-window [class*="cursor-ne-resize"]:hover,
+.opened-window [class*="cursor-sw-resize"]:hover,
+.opened-window [class*="cursor-se-resize"]:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}

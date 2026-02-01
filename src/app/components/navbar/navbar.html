@@ -1,0 +1,32 @@
+<div class="main-navbar-vp absolute top-0 right-0 w-screen shadow-md flex flex-nowrap justify-between items-center bg-ub-grey text-ubt-grey text-xs md:text-sm select-none z-50">
+  <!-- Activities Button -->
+  <div
+    tabindex="0"
+    class="pl-2 md:pl-3 pr-2 md:pr-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-0.5 md:py-1 cursor-pointer text-xs md:text-sm"
+    (click)="showAllApps && showAllApps()">
+    Activities
+  </div>
+  
+  <!-- Clock -->
+  <div
+    tabindex="0"
+    class="pl-1 md:pl-2 pr-1 md:pr-2 text-xs outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-0.5 md:py-1">
+    <app-clock></app-clock>
+  </div>
+  
+  <!-- Status Bar -->
+  <div
+    id="status-bar"
+    tabindex="0"
+    (click)="onStatusBarClick()"
+    (focus)="onStatusBarFocus()"
+    class="relative pr-2 md:pr-3 pl-2 md:pl-3 outline-none transition duration-100 ease-in-out border-b-2 border-transparent focus:border-ubb-orange py-0.5 md:py-1 cursor-pointer">
+    <app-status></app-status>
+    <app-status-card
+      [visible]="statusCardVisible()"
+      [lockScreen]="onLockScreen.bind(this)"
+      [shutDown]="onShutDown.bind(this)"
+      (close)="onStatusCardClose()">
+    </app-status-card>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+/* Terminal specific styles */
+#terminal-body {
+  font-family: 'Ubuntu Mono', 'Courier New', monospace;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+#terminal-body input {
+  color: transparent;
+  font-family: 'Ubuntu Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  caret-color: transparent;
+  line-height: 1.25rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  vertical-align: baseline;
+}
+
+#terminal-body span {
+  font-family: 'Ubuntu Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  line-height: 1.25rem;
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+}
+
+#terminal-body::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+#terminal-body::-webkit-scrollbar-thumb {
+  background-color: #D3D7CF;
+  border-radius: 5px;
+}

@@ -1,0 +1,48 @@
+<div class="h-full w-full bg-ub-drk-abrgn text-white text-sm font-bold" id="terminal-body">
+  @for (row of terminalRows(); track row.id) {
+    <div class="flex w-full h-5">
+      <div class="flex">
+        <div class="text-ubt-green">eve@portfolio</div>
+        <div class="text-white mx-px font-medium">:</div>
+        <div class="text-ubt-blue">{{ currentDirectory() }}</div>
+        <div class="text-white mx-px font-medium mr-1">$</div>
+      </div>
+      @if (row.isActive) {
+        <div 
+          id="cmd"
+          class="bg-transparent relative flex-1 overflow-hidden"
+          (click)="focusCursor(row.id)">
+          <span 
+            id="show-{{ row.id }}"
+            class="float-left whitespace-pre pb-1 opacity-100 font-normal tracking-wider pointer-events-none select-none">
+            {{ getCurrentCommand(row.id) }}
+          </span>
+          <div 
+            id="cursor-{{ row.id }}"
+            class="float-left mt-1 w-1.5 h-3.5 bg-white pointer-events-none select-none"
+            [style.visibility]="cursorVisibleMap[row.id] ? 'visible' : 'hidden'">
+          </div>
+          <input
+            id="terminal-input-{{ row.id }}"
+            type="text"
+            class="absolute top-0 left-0 w-full opacity-0 outline-none bg-transparent"
+            style="z-index: 20;"
+            spellcheck="false"
+            autocomplete="off"
+            [value]="getCurrentCommand(row.id)"
+            (input)="onInputChange(row.id, $event)"
+            (keydown)="onCommandInput(row.id, $event)"
+            (blur)="unFocusCursor(row.id)"
+            autofocus>
+        </div>
+      } @else {
+        <div class="flex-1">
+          <span class="whitespace-pre font-normal tracking-wider">{{ row.command }}</span>
+        </div>
+      }
+    </div>
+    @if (row.result) {
+      <div id="row-result-{{ row.id }}" class="my-2 font-normal" [innerHTML]="row.result"></div>
+    }
+  }
+</div>

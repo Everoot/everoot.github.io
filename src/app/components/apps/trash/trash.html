@@ -1,0 +1,37 @@
+<div class="w-full h-full flex flex-col bg-ub-cool-grey text-white select-none">
+  <!-- Header -->
+  <div class="flex items-center justify-between w-full bg-ub-warm-grey bg-opacity-40 text-sm">
+    <span class="font-bold ml-2">Trash</span>
+    <div class="flex">
+      <div class="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded text-gray-300">Restore</div>
+      <div 
+        (click)="emptyTrash()" 
+        class="border border-black bg-black bg-opacity-50 px-3 py-1 my-1 mx-1 rounded hover:bg-opacity-80 cursor-pointer">
+        Empty
+      </div>
+    </div>
+  </div>
+  
+  <!-- Content -->
+  @if (empty()) {
+    <div class="flex-grow flex flex-col justify-center items-center">
+      <img class="w-24" src="/assets/themes/Yaru/status/user-trash-symbolic.svg" alt="Trash Empty" />
+      <span class="font-bold mt-4 text-xl px-1 text-gray-400">Trash is Empty</span>
+    </div>
+  } @else {
+    <div class="flex-grow ml-4 flex flex-wrap items-start content-start justify-start overflow-y-auto windowMainScreen">
+      @for (item of trashItems; track item.name) {
+        <div 
+          tabindex="1" 
+          (focus)="onItemFocus($event)"
+          (blur)="onItemFocus($event)"
+          class="flex flex-col items-center text-sm outline-none w-16 my-2 mx-4">
+          <div class="w-16 h-16 flex items-center justify-center">
+            <img [src]="item.icon" [alt]="item.name" />
+          </div>
+          <span class="text-center rounded px-0.5">{{ item.name }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

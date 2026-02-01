@@ -1,0 +1,18 @@
+<div class="absolute h-full top-7 w-full z-20 pl-12 justify-center md:pl-20 border-black border-opacity-60 bg-black bg-opacity-70">
+  <div class="flex md:pr-20 pt-5 align-center justify-center" (click)="$event.stopPropagation()">
+    <div class="flex w-2/3 h-full items-center pl-2 pr-2 bg-white border-black border-width-2 rounded-xl overflow-hidden md:w-1/3">
+      <img class="w-5 h-5" alt="search icon" src="/assets/images/logos/search.png" />
+      <input 
+        class="w-3/4 p-1 bg-transparent focus:outline-none"
+        placeholder="Type to Search"
+        [value]="query()"
+        (input)="onQueryChange($event)"
+        (click)="$event.stopPropagation()" />
+    </div>
+  </div>
+  <div class="grid md:grid-cols-6 md:grid-rows-3 grid-cols-3 grid-rows-6 md:gap-4 gap-1 md:px-20 px-5 pt-10 justify-center" (click)="$event.stopPropagation()">
+    @for (app of filteredApps(); track app.id) {
+      <app-desktop-icon [app]="app" (openApp)="handleOpenApp($event)"></app-desktop-icon>
+    }
+  </div>
+</div>

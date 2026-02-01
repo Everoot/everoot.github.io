@@ -1,0 +1,21 @@
+<div 
+  class="absolute select-none z-40 left-0 top-0 bottom-0 pt-7 md:pt-7 pb-2 md:pb-2 w-auto flex flex-col justify-between items-center border-black border-opacity-60 bg-black bg-opacity-50">
+  
+  <div class="flex flex-col justify-start items-center">
+    @for (app of favouriteApps(); track app.id) {
+      <div 
+        class="w-11 h-11 md:w-14 md:h-14 rounded m-0.5 md:m-1 hover:bg-white hover:bg-opacity-10 flex items-center justify-center cursor-pointer"
+        (click)="openApp(app)"
+        [title]="app.title">
+        <img [src]="app.icon" [alt]="app.title" class="w-9 h-9 md:w-12 md:h-12">
+      </div>
+    }
+  </div>
+  
+  <div 
+    class="w-11 h-11 md:w-14 md:h-14 rounded m-0.5 md:m-1 hover:bg-white hover:bg-opacity-10 flex items-center justify-center cursor-pointer"
+    (click)="onShowAllApps()"
+    title="Show Applications">
+    <img src="/assets/themes/Yaru/system/view-app-grid-symbolic.svg" alt="Show Applications" class="w-9 h-9 md:w-12 md:h-12">
+  </div>
+</div>

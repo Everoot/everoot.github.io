@@ -1,0 +1,17 @@
+<div 
+  class="p-1 m-px z-30 bg-white bg-opacity-0 hover:bg-opacity-20 focus:bg-ub-orange focus:bg-opacity-50 focus:border-yellow-700 focus:border-opacity-100 border border-transparent outline-none rounded select-none w-20 h-16 md:w-24 md:h-20 flex flex-col justify-start items-center text-center text-xs font-normal text-white relative cursor-pointer touch-manipulation"
+  (dblclick)="onDoubleClick()"
+  (click)="onClick()"
+  (touchend)="onTouchEnd($event)"
+  tabindex="0">
+  <div class="relative pointer-events-none">
+    <img [src]="app.icon" [alt]="app.title" class="mb-1 w-9 h-9 md:w-12 md:h-12 pointer-events-none">
+    @if (app.isExternalApp) {
+      <img 
+        src="/assets/themes/Yaru/status/arrow-up-right.svg" 
+        alt="External Link" 
+        class="w-2 h-2 md:w-2.5 md:h-2.5 absolute -bottom-0.5 -right-0.5 pointer-events-none">
+    }
+  </div>
+  <span class="text-xs text-[10px] md:text-xs pointer-events-none">{{ app.title }}</span>
+</div>

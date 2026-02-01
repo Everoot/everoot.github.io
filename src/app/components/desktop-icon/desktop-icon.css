@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+/* Focus styles for keyboard navigation */
+:host:focus {
+  outline: none;
+}
+
+/* Ensure touch events work properly on mobile */
+:host ::ng-deep div {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Improve touch target size on mobile */
+@media (max-width: 768px) {
+  :host ::ng-deep div {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

@@ -1,0 +1,150 @@
+<div 
+  class="opened-window overflow-hidden min-w-1/4 min-h-1/4 main-window absolute window-shadow border-black border-opacity-40 border border-t-0 flex flex-col"
+  [ngClass]="{
+    'rounded-lg rounded-b-none': !windowState.isMaximized,
+    'rounded-none': windowState.isMaximized,
+    'z-30': windowState.isFocused,
+    'z-20 notFocused': !windowState.isFocused
+  }"
+  [ngStyle]="getWindowStyle()"
+  (mousedown)="focus()"
+  [style.cursor]="isResizing ? getResizeCursor(resizeDirection) : 'default'">
+  
+  <!-- Window Header -->
+  <div 
+    class="relative bg-ub-window-title border-t-2 border-white border-opacity-5 py-1 md:py-1.5 px-2 md:px-3 text-white w-full select-none rounded-b-none cursor-move"
+    (mousedown)="onHeaderMouseDown($event)">
+    <div class="flex justify-center text-xs md:text-sm font-bold truncate px-8">{{ windowState.app.title }}</div>
+    
+    <!-- Window Control Buttons -->
+    <div class="absolute select-none right-0 top-0 mt-0.5 md:mt-1 mr-0.5 md:mr-1 flex justify-center items-center">
+      <span 
+        class="mx-0.5 md:mx-1.5 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-0.5 md:mt-1 h-4 w-4 md:h-5 md:w-5 items-center cursor-pointer"
+        (click)="minimize()"
+        title="Minimize">
+        <img
+          src="/assets/themes/Yaru/window/window-minimize-symbolic.svg"
+          alt="Minimize"
+          class="h-4 w-4 md:h-5 md:w-5 inline"
+        />
+      </span>
+      @if (windowState.isMaximized) {
+        <span 
+          class="mx-1 md:mx-2 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-0.5 md:mt-1 h-4 w-4 md:h-5 md:w-5 items-center cursor-pointer"
+          (click)="maximize()"
+          title="Restore">
+          <img
+            src="/assets/themes/Yaru/window/window-restore-symbolic.svg"
+            alt="Restore"
+            class="h-4 w-4 md:h-5 md:w-5 inline"
+          />
+        </span>
+      } @else {
+        <span 
+          class="mx-1 md:mx-2 bg-white bg-opacity-0 hover:bg-opacity-10 rounded-full flex justify-center mt-0.5 md:mt-1 h-4 w-4 md:h-5 md:w-5 items-center cursor-pointer"
+          (click)="maximize()"
+          title="Maximize">
+          <img
+            src="/assets/themes/Yaru/window/window-maximize-symbolic.svg"
+            alt="Maximize"
+            class="h-4 w-4 md:h-5 md:w-5 inline"
+          />
+        </span>
+      }
+      <button 
+        tabindex="-1"
+        [id]="'close-' + windowState.id"
+        class="mx-0.5 md:mx-1.5 focus:outline-none cursor-default bg-ub-orange bg-opacity-90 hover:bg-opacity-100 rounded-full flex justify-center mt-0.5 md:mt-1 h-4 w-4 md:h-5 md:w-5 items-center"
+        (click)="close()"
+        title="Close">
+        <img
+          src="/assets/themes/Yaru/window/window-close-symbolic.svg"
+          alt="Close"
+          class="h-4 w-4 md:h-5 md:w-5 inline"
+        />
+      </button>
+    </div>
+  </div>
+
+  <!-- Resize Handles -->
+  @if (!windowState.isMaximized) {
+    <!-- Top edge -->
+    <div 
+      class="absolute top-0 left-0 right-0 h-1 cursor-n-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'top')"
+      [style.cursor]="getResizeCursor('top')">
+    </div>
+    <!-- Bottom edge -->
+    <div 
+      class="absolute bottom-0 left-0 right-0 h-1 cursor-s-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'bottom')"
+      [style.cursor]="getResizeCursor('bottom')">
+    </div>
+    <!-- Left edge -->
+    <div 
+      class="absolute top-0 bottom-0 left-0 w-1 cursor-w-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'left')"
+      [style.cursor]="getResizeCursor('left')">
+    </div>
+    <!-- Right edge -->
+    <div 
+      class="absolute top-0 bottom-0 right-0 w-1 cursor-e-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'right')"
+      [style.cursor]="getResizeCursor('right')">
+    </div>
+    <!-- Corners -->
+    <div 
+      class="absolute top-0 left-0 w-2 h-2 cursor-nw-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'top-left')"
+      [style.cursor]="getResizeCursor('top-left')">
+    </div>
+    <div 
+      class="absolute top-0 right-0 w-2 h-2 cursor-ne-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'top-right')"
+      [style.cursor]="getResizeCursor('top-right')">
+    </div>
+    <div 
+      class="absolute bottom-0 left-0 w-2 h-2 cursor-sw-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'bottom-left')"
+      [style.cursor]="getResizeCursor('bottom-left')">
+    </div>
+    <div 
+      class="absolute bottom-0 right-0 w-2 h-2 cursor-se-resize z-50"
+      (mousedown)="onResizeMouseDown($event, 'bottom-right')"
+      [style.cursor]="getResizeCursor('bottom-right')">
+    </div>
+  }
+
+  <!-- Window Content -->
+  <div class="w-full flex-grow z-20 max-h-full overflow-y-auto windowMainScreen bg-ub-cool-grey">
+    @switch (windowState.app.id) {
+      @case ('about') {
+        <app-about></app-about>
+      }
+      @case ('projects') {
+        <app-projects></app-projects>
+      }
+      @case ('skills') {
+        <app-skills></app-skills>
+      }
+      @case ('contact') {
+        <app-contact></app-contact>
+      }
+      @case ('terminal') {
+        <app-terminal></app-terminal>
+      }
+      @case ('settings') {
+        <app-settings></app-settings>
+      }
+      @case ('chrome') {
+        <app-chrome></app-chrome>
+      }
+      @case ('trash') {
+        <app-trash></app-trash>
+      }
+      @case ('vscode') {
+        <app-vscode></app-vscode>
+      }
+    }
+  </div>
+</div>

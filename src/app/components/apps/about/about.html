@@ -1,0 +1,329 @@
+<div class="w-full h-full flex bg-ub-cool-grey text-white select-none relative">
+  <!-- Mobile Menu Button -->
+  <div 
+    (click)="toggleNavbar()" 
+    class="md:hidden flex flex-col items-center justify-center absolute bg-ub-cool-grey rounded w-6 h-6 top-1 left-1 z-30 cursor-pointer">
+    <div class="w-3.5 border-t border-white"></div>
+    <div class="w-3.5 border-t border-white" style="margin-top: 2pt; margin-bottom: 2pt;"></div>
+    <div class="w-3.5 border-t border-white"></div>
+    <div 
+      [class.visible]="navbarVisible"
+      [class.invisible]="!navbarVisible"
+      class="md:hidden text-xs absolute bg-ub-cool-grey py-0.5 px-1 rounded-sm top-full mt-1 left-0 shadow border-black border border-opacity-20 animateShow z-30">
+      <div 
+        [class.bg-ub-orange]="activeScreen === 'about'"
+        class="w-28 cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2"
+        (click)="changeScreen('about')">
+        <img class="w-3" src="/assets/themes/Yaru/status/about.svg" alt="about">
+        <span class="ml-1 text-gray-50">About Me</span>
+      </div>
+      <div 
+        [class.bg-ub-orange]="activeScreen === 'education'"
+        class="w-28 cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2"
+        (click)="changeScreen('education')">
+        <img class="w-3" src="/assets/themes/Yaru/status/education.svg" alt="education">
+        <span class="ml-1 text-gray-50">Education</span>
+      </div>
+      <div 
+        [class.bg-ub-orange]="activeScreen === 'skills'"
+        class="w-28 cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2"
+        (click)="changeScreen('skills')">
+        <img class="w-3" src="/assets/themes/Yaru/status/skills.svg" alt="skills">
+        <span class="ml-1 text-gray-50">Skills</span>
+      </div>
+      <div 
+        [class.bg-ub-orange]="activeScreen === 'projects'"
+        class="w-28 cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2"
+        (click)="changeScreen('projects')">
+        <img class="w-3" src="/assets/themes/Yaru/status/projects.svg" alt="projects">
+        <span class="ml-1 text-gray-50">Projects</span>
+      </div>
+      <div 
+        [class.bg-ub-orange]="activeScreen === 'contact'"
+        class="w-28 cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2"
+        (click)="changeScreen('contact')">
+        <img class="w-3" src="/assets/themes/Yaru/status/download.svg" alt="contact">
+        <span class="ml-1 text-gray-50">Contact</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sidebar Navigation -->
+  <div class="hidden md:flex flex-col w-1/4 md:w-1/5 text-sm overflow-y-auto windowMainScreen border-r border-black">
+    <div 
+      [class.bg-ub-orange]="activeScreen === 'about'"
+      [class.hover:bg-opacity-95]="activeScreen === 'about'"
+      [class.hover:bg-gray-50]="activeScreen !== 'about'"
+      [class.hover:bg-opacity-5]="activeScreen !== 'about'"
+      class="w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"
+      (click)="changeScreen('about')">
+      <img class="w-3 md:w-4" src="/assets/themes/Yaru/status/about.svg" alt="about">
+      <span class="ml-1 md:ml-2 text-gray-50">About Me</span>
+    </div>
+    <div 
+      [class.bg-ub-orange]="activeScreen === 'education'"
+      [class.hover:bg-opacity-95]="activeScreen === 'education'"
+      [class.hover:bg-gray-50]="activeScreen !== 'education'"
+      [class.hover:bg-opacity-5]="activeScreen !== 'education'"
+      class="w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"
+      (click)="changeScreen('education')">
+      <img class="w-3 md:w-4" src="/assets/themes/Yaru/status/education.svg" alt="education">
+      <span class="ml-1 md:ml-2 text-gray-50">Education</span>
+    </div>
+    <div 
+      [class.bg-ub-orange]="activeScreen === 'skills'"
+      [class.hover:bg-opacity-95]="activeScreen === 'skills'"
+      [class.hover:bg-gray-50]="activeScreen !== 'skills'"
+      [class.hover:bg-opacity-5]="activeScreen !== 'skills'"
+      class="w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"
+      (click)="changeScreen('skills')">
+      <img class="w-3 md:w-4" src="/assets/themes/Yaru/status/skills.svg" alt="skills">
+      <span class="ml-1 md:ml-2 text-gray-50">Skills</span>
+    </div>
+    <div 
+      [class.bg-ub-orange]="activeScreen === 'projects'"
+      [class.hover:bg-opacity-95]="activeScreen === 'projects'"
+      [class.hover:bg-gray-50]="activeScreen !== 'projects'"
+      [class.hover:bg-opacity-5]="activeScreen !== 'projects'"
+      class="w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"
+      (click)="changeScreen('projects')">
+      <img class="w-3 md:w-4" src="/assets/themes/Yaru/status/projects.svg" alt="projects">
+      <span class="ml-1 md:ml-2 text-gray-50">Projects</span>
+    </div>
+    <div 
+      [class.bg-ub-orange]="activeScreen === 'contact'"
+      [class.hover:bg-opacity-95]="activeScreen === 'contact'"
+      [class.hover:bg-gray-50]="activeScreen !== 'contact'"
+      [class.hover:bg-opacity-5]="activeScreen !== 'contact'"
+      class="w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"
+      (click)="changeScreen('contact')">
+      <img class="w-3 md:w-4" src="/assets/themes/Yaru/status/download.svg" alt="contact">
+      <span class="ml-1 md:ml-2 text-gray-50">Contact</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex flex-col w-full md:w-3/4 md:w-4/5 justify-start items-center flex-grow bg-ub-grey overflow-y-auto windowMainScreen p-2 md:p-4">
+    @switch (activeScreen) {
+      @case ('about') {
+        <div class="w-full max-w-3xl mx-auto px-4 md:px-8 py-8 md:py-12">
+          <!-- Avatar -->
+          <div class="flex justify-center mb-8 md:mb-12">
+            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-white border-opacity-20">
+              <img class="w-full h-full object-cover" src="/assets/images/logos/avatar.png" alt="Eve Liang" onerror="this.style.display='none'">
+            </div>
+          </div>
+          
+          <!-- Name and Title -->
+          <div class="text-center mb-12 md:mb-16">
+            <h1 class="text-2xl md:text-4xl font-light text-white mb-2">Eve Liang</h1>
+            <p class="text-base md:text-lg text-gray-300 font-light mb-6 md:mb-8">Full-Stack Software Engineer</p>
+            <ul class="text-sm md:text-base text-gray-400 font-light space-y-2 list-none text-left max-w-2xl mx-auto">
+              <li class="flex items-start">
+                <span class="text-white mr-3 mt-1.5">•</span>
+                <span class="flex-1">Interested in distributed systems, software engineering, AI/ML and system reliability.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-white mr-3 mt-1.5">•</span>
+                <span class="flex-1">Passionate about building scalable applications, exploring new technologies, and contributing to open-source projects.</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-white mr-3 mt-1.5">•</span>
+                <span class="flex-1">Enjoy reading technical blogs, attending tech conferences, and continuous learning.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      }
+      @case ('education') {
+        <div class="w-full max-w-3xl mx-auto px-4 md:px-8 py-8 md:py-12">
+          <h2 class="text-xl md:text-2xl font-light text-white mb-8 md:mb-12">Education</h2>
+          <div class="space-y-8 md:space-y-10">
+            <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8 pb-6 md:pb-8">
+              <h3 class="text-lg md:text-xl font-medium text-white mb-2">Southern Methodist University</h3>
+              <p class="text-sm md:text-base text-gray-300 mb-1">Master of Science in Computer Science</p>
+              <p class="text-xs md:text-sm text-gray-500">2023 - 2024</p>
+            </div>
+            <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8 pb-6 md:pb-8">
+              <h3 class="text-lg md:text-xl font-medium text-white mb-2">Fujian Agriculture and Forestry University</h3>
+              <p class="text-sm md:text-base text-gray-300 mb-1">Bachelor of Science in Mathematics, Minor in Finance</p>
+              <p class="text-xs md:text-sm text-gray-500">2019 - 2022</p>
+            </div>
+          </div>
+        </div>
+      }
+      @case ('skills') {
+        <div class="w-full max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+          <h2 class="text-xl md:text-2xl font-light text-white mb-8 md:mb-12">Technical Skills</h2>
+          <div class="space-y-10 md:space-y-12">
+            <!-- Programming Languages -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Programming Languages</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Java</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">JavaScript</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">TypeScript</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Python</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">SQL</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">HTML</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">CSS</span>
+              </div>
+            </div>
+            
+            <!-- Frontend Frameworks -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Frontend Frameworks & Libraries</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Angular</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">React</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">RxJS</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Tailwind CSS</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">ECharts</span>
+              </div>
+            </div>
+            
+            <!-- Backend & APIs -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Backend & APIs</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Spring Boot</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Node.js</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">GraphQL</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">REST APIs</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">GraphQL-DGS</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Flask</span>
+              </div>
+            </div>
+            
+            <!-- Data & Messaging -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Data & Messaging</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Kafka</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">PostgreSQL</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">MySQL</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">MongoDB</span>
+              </div>
+            </div>
+            
+            <!-- Cloud & DevOps -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Cloud & DevOps</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">AWS</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Docker</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Kubernetes</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">CI/CD</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Jenkins</span>
+              </div>
+            </div>
+            
+            <!-- Tools & Others -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">Tools & Others</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Git</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">GitHub</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Jira</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Confluence</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Postman</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">VS Code</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">IntelliJ IDEA</span>
+              </div>
+            </div>
+            
+            <!-- AI/ML -->
+            <div>
+              <h3 class="text-sm md:text-base text-gray-400 mb-5 font-light uppercase tracking-wider border-b border-white border-opacity-10 pb-2">AI/ML & Research</h3>
+              <div class="flex flex-wrap gap-2.5 md:gap-3">
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Machine Learning</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Deep Learning</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Computer Vision</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Clinical AI</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">NumPy</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">Pandas</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">TensorFlow</span>
+                <span class="px-4 py-2 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light hover:bg-opacity-15 transition-colors">PyTorch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      @case ('projects') {
+        <div class="w-full max-w-4xl mx-auto px-4 md:px-8 py-8 md:py-12">
+          <h2 class="text-xl md:text-2xl font-light text-white mb-8 md:mb-12">Projects</h2>
+          <div class="space-y-6 md:space-y-8">
+            @for (project of projects; track project.name) {
+              <div class="bg-ub-cool-grey bg-opacity-50 p-6 md:p-8 rounded-lg">
+                <h3 class="text-lg md:text-xl font-medium text-white mb-4">{{ project.name }}</h3>
+                <p class="text-sm md:text-base text-gray-300 mb-4 leading-relaxed">
+                  {{ project.description }}
+                </p>
+                <div class="mb-4">
+                  <h4 class="text-xs md:text-sm text-gray-400 mb-3 font-light uppercase tracking-wider">Technologies</h4>
+                  <div class="flex flex-wrap gap-2 md:gap-3">
+                    @for (tech of project.technologies; track tech) {
+                      <span class="px-3 py-1.5 bg-white bg-opacity-10 text-white rounded-md text-xs md:text-sm font-light">{{ tech }}</span>
+                    }
+                  </div>
+                </div>
+                <div>
+                  <h4 class="text-xs md:text-sm text-gray-400 mb-3 font-light uppercase tracking-wider">Impact</h4>
+                  <ul class="list-none space-y-2">
+                    @for (item of project.impact; track item) {
+                      <li class="flex items-start">
+                        <span class="text-white mr-3 mt-1">•</span>
+                        <span class="text-sm md:text-base text-gray-300 flex-1">{{ item }}</span>
+                      </li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+      @case ('contact') {
+        <div class="w-full max-w-3xl mx-auto px-4 md:px-8 py-8 md:py-12">
+          <h2 class="text-xl md:text-2xl font-light text-white mb-8 md:mb-12 text-center">Contact</h2>
+          <div class="space-y-8 md:space-y-10">
+            <!-- Email -->
+            <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8">
+              <p class="text-xs md:text-sm text-gray-400 mb-2 font-light uppercase tracking-wider">Email</p>
+              <a href="mailto:byleve2022@gmail.com" class="text-white hover:text-gray-300 transition-colors text-base md:text-lg font-light block">
+                byleve2022@gmail.com
+              </a>
+            </div>
+            
+            <!-- GitHub -->
+            <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8">
+              <p class="text-xs md:text-sm text-gray-400 mb-2 font-light uppercase tracking-wider">GitHub</p>
+              <a href="https://github.com/Everoot" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gray-300 transition-colors text-base md:text-lg font-light block">
+                github.com/Everoot
+              </a>
+            </div>
+            
+            <!-- Available for -->
+            <div class="border-l-2 border-white border-opacity-20 pl-6 md:pl-8 pt-2">
+              <p class="text-xs md:text-sm text-gray-400 mb-4 font-light uppercase tracking-wider">Available for</p>
+              <ul class="list-none space-y-2">
+                <li class="flex items-start">
+                  <span class="text-white mr-3 mt-1">•</span>
+                  <span class="text-sm md:text-base text-gray-300 flex-1">PhD program applications</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-white mr-3 mt-1">•</span>
+                  <span class="text-sm md:text-base text-gray-300 flex-1">Research collaborations</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-white mr-3 mt-1">•</span>
+                  <span class="text-sm md:text-base text-gray-300 flex-1">Software engineering opportunities</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

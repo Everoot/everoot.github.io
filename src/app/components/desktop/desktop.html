@@ -1,0 +1,41 @@
+<div class="h-screen w-screen flex flex-col items-end justify-start content-start flex-wrap-reverse pt-8 bg-transparent relative overflow-hidden overscroll-none window-parent" id="monitor-screen" [ngStyle]="getBackgroundStyle()">
+  
+  <!-- Top Navbar -->
+  <app-navbar
+    [showAllApps]="showAllApps.bind(this)"
+    (lockScreen)="onLockScreen()"
+    (shutDown)="onShutDown()">
+  </app-navbar>
+  
+  <!-- Windows Area -->
+  <div class="absolute h-full w-full bg-transparent" data-context="desktop-area">
+    @for (windowState of windowManager.getWindows() | keyvalue; track windowState.key) {
+      @if (windowState.value.isOpen && !windowState.value.isMinimized) {
+        <app-window [windowState]="windowState.value"></app-window>
+      }
+    }
+  </div>
+
+  <!-- Ubuntu Side Menu Bar -->
+  <app-sidebar (showAllApps)="showAllApps()"></app-sidebar>
+
+  <!-- Desktop Apps - Right Side -->
+  <div class="absolute h-full w-full flex flex-col items-end justify-start content-start flex-wrap-reverse pt-4 md:pt-8 pr-2 md:pr-4 z-30 pointer-events-none">
+    @for (app of desktopApps(); track app.id) {
+      <div class="pointer-events-auto">
+        <app-desktop-icon [app]="app" (openApp)="openApp($event)"></app-desktop-icon>
+      </div>
+    }
+  </div>
+
+  <!-- All Applications View -->
+  @if (allAppsView()) {
+    <div class="absolute inset-0 z-10" (click)="showAllApps()">
+      <app-all-applications 
+        [apps]="appConfig.getApps()" 
+        [openApp]="openApp.bind(this)">
+      </app-all-applications>
+    </div>
+  }
+
+</div>

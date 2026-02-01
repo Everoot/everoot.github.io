@@ -1,0 +1,34 @@
+/* Minimalist styling for About component */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Improve readability */
+p, li {
+  line-height: 1.7;
+}
+
+/* Subtle hover effects */
+a:hover {
+  opacity: 0.8;
+}
+
+/* Bullet point styling */
+ul.list-none li {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+}
+
+ul.list-none li span:first-child {
+  flex-shrink: 0;
+  font-size: 1.2em;
+  line-height: 1;
+}

@@ -1,0 +1,27 @@
+<div class="w-full h-full bg-ub-grey text-white p-6 overflow-y-auto">
+  <h1 class="text-2xl font-bold mb-6">Projects</h1>
+  <div class="space-y-6">
+    @for (project of projects; track project.name) {
+      <div class="bg-ub-cool-grey p-6 rounded-lg">
+        <h2 class="text-xl font-bold mb-2">{{ project.name }}</h2>
+        <p class="mb-4">{{ project.description }}</p>
+        <div class="mb-4">
+          <h3 class="font-bold mb-2">Technologies:</h3>
+          <div class="flex flex-wrap gap-2">
+            @for (tech of project.technologies; track tech) {
+              <span class="px-3 py-1 bg-ub-orange rounded text-sm">{{ tech }}</span>
+            }
+          </div>
+        </div>
+        <div>
+          <h3 class="font-bold mb-2">Impact:</h3>
+          <ul class="list-disc list-inside space-y-1">
+            @for (item of project.impact; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+</div>

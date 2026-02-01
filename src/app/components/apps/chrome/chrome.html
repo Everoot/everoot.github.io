@@ -1,0 +1,33 @@
+<div class="h-full w-full flex flex-col bg-ub-cool-grey">
+  <!-- URL Bar -->
+  <div class="w-full pt-0.5 pb-1 flex justify-start items-center text-white text-sm border-b border-gray-900">
+    <div 
+      (click)="refreshChrome()" 
+      class="ml-2 mr-1 flex justify-center items-center rounded-full bg-gray-50 bg-opacity-0 hover:bg-opacity-10 cursor-pointer">
+      <img class="w-5" src="/assets/themes/Yaru/status/chrome_refresh.svg" alt="Ubuntu Chrome Refresh" />
+    </div>
+    <div 
+      (click)="goToHome()" 
+      class="mr-2 ml-1 flex justify-center items-center rounded-full bg-gray-50 bg-opacity-0 hover:bg-opacity-10 cursor-pointer">
+      <img class="w-5" src="/assets/themes/Yaru/status/chrome_home.svg" alt="Ubuntu Chrome Home" />
+    </div>
+    <input 
+      #urlBar
+      id="chrome-url-bar"
+      [(ngModel)]="displayUrl"
+      (keydown)="onUrlKeyDown($event)"
+      class="outline-none bg-ub-grey rounded-full pl-3 py-0.5 mr-3 w-5/6 text-gray-300 focus:text-white" 
+      type="url" 
+      spellcheck="false" 
+      autocomplete="off" />
+  </div>
+  <!-- Browser Frame -->
+  <iframe 
+    #chromeScreen
+    id="chrome-screen"
+    [src]="safeUrl" 
+    class="flex-grow" 
+    frameborder="0" 
+    title="Ubuntu Chrome Url">
+  </iframe>
+</div>

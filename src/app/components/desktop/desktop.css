@@ -1,0 +1,4 @@
+/* Desktop container styles */
+.window-parent {
+  user-select: none;
+}

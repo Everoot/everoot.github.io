@@ -1,0 +1,95 @@
+<div
+  class="absolute bg-ub-cool-grey rounded-md py-4 top-9 right-3 shadow border-black border border-opacity-20 status-card"
+  [class.visible]="visible"
+  [class.invisible]="!visible"
+  [class.animateShow]="visible">
+  
+  <!-- Arrow pointing up -->
+  <div class="absolute w-0 h-0 -top-1 right-6 top-arrow-up"></div>
+  
+  <!-- Sound Control -->
+  <div class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/audio-headphones-symbolic.svg" alt="ubuntu headphone">
+    </div>
+    <input
+      type="range"
+      class="ubuntu-slider w-2/3"
+      [value]="soundLevel()"
+      (input)="onSoundChange($event)"
+      min="0"
+      max="100"
+      step="1">
+  </div>
+  
+  <!-- Brightness Control -->
+  <div class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/display-brightness-symbolic.svg" alt="ubuntu brightness">
+    </div>
+    <input
+      type="range"
+      class="ubuntu-slider w-2/3"
+      [value]="brightnessLevel()"
+      (input)="onBrightnessChange($event)"
+      min="0"
+      max="100"
+      step="1">
+  </div>
+  
+  <!-- Divider -->
+  <div class="w-64 flex content-center justify-center">
+    <div class="w-2/4 border-black border-opacity-50 border-b my-2 border-solid"></div>
+  </div>
+  
+  <!-- WiFi -->
+  <div class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/network-wireless-signal-good-symbolic.svg" alt="ubuntu wifi">
+    </div>
+    <div class="w-2/3 flex items-center justify-between text-gray-400">
+      <span>WiFi Network</span>
+      <div class="arrow-custom-right"></div>
+    </div>
+  </div>
+  
+  <!-- Bluetooth -->
+  <div class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/bluetooth-symbolic.svg" alt="ubuntu bluetooth">
+    </div>
+    <div class="w-2/3 flex items-center justify-between text-gray-400">
+      <span>Bluetooth</span>
+      <div class="arrow-custom-right"></div>
+    </div>
+  </div>
+  
+  <!-- Divider -->
+  <div class="w-64 flex content-center justify-center">
+    <div class="w-2/4 border-black border-opacity-50 border-b my-2 border-solid"></div>
+  </div>
+  
+  <!-- Lock Screen -->
+  <div 
+    class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20 cursor-pointer"
+    (click)="lockScreen && lockScreen()">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/system-shutdown-symbolic.svg" alt="ubuntu lock">
+    </div>
+    <div class="w-2/3 text-gray-400">
+      <span>Lock Screen</span>
+    </div>
+  </div>
+  
+  <!-- Shut Down -->
+  <div 
+    class="w-64 py-1.5 flex items-center justify-center bg-ub-cool-grey hover:bg-ub-warm-grey hover:bg-opacity-20 cursor-pointer"
+    (click)="shutDown && shutDown()">
+    <div class="w-8">
+      <img width="16px" height="16px" src="/assets/themes/Yaru/status/power-button.svg" alt="ubuntu power">
+    </div>
+    <div class="w-2/3 text-gray-400">
+      <span>Shut Down</span>
+    </div>
+  </div>
+</div>
