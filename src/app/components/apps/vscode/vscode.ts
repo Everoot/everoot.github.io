@@ -13,8 +13,8 @@ export class VscodeComponent implements OnInit {
   // This is not my work, but it's amazing!
   // Original repo: https://github.com/conwnet/github1s
   // You can change this to your own repository
-  private githubRepo = 'Everoot/portfolio';
-  private defaultPath = 'ubuntu-portfolio/src/app/app.ts';
+  private githubRepo = 'everoot/everoot.github.io';
+  private defaultPath = 'src/app/app.ts';
   github1sUrl: string;
   safeGithub1sUrl: SafeResourceUrl;
 
